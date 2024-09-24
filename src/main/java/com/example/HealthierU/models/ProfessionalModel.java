@@ -1,5 +1,6 @@
 package com.example.HealthierU.models;
 
+import com.example.HealthierU.DTOs.ProfessinalDTO;
 import jakarta.persistence.*;
 
 import java.util.UUID;
@@ -20,10 +21,10 @@ public class ProfessionalModel {
     public ProfessionalModel() {
     }
 
-    public ProfessionalModel(String professionalName, int professionalRegister, String professionalField) {
-        this.professionalName = professionalName;
-        this.professionalRegister = professionalRegister;
-        this.professionalField = professionalField;
+    public ProfessionalModel(ProfessinalDTO professinalDTO) {
+        this.professionalName = professinalDTO.professionalName();
+        this.professionalRegister = professinalDTO.professionalRegister();
+        this.professionalField = professinalDTO.professionalField();
     }
 
     public String getProfessionalName() {
