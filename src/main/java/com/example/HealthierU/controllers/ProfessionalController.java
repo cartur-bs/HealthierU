@@ -21,7 +21,7 @@ public class ProfessionalController extends SQLException {
     @GetMapping("/get-all")
     public ResponseEntity getAllProfessionals() throws SQLException{
         var allProfessionals = professionalRepository.findAll();
-        return ResponseEntity.ok("deu certo");
+        return ResponseEntity.ok(allProfessionals);
     }
 
     @PostMapping("/new-professional")
@@ -32,11 +32,12 @@ public class ProfessionalController extends SQLException {
            if(professionalModel.toString().isEmpty()){
                throw new SQLException();
            }
-           return ResponseEntity.ok().build();
+           return ResponseEntity.ok("NEW PROFESSIONAL SAVED");
        }catch (SQLException e){
            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("ERROR SAVING DATA"+e.getMessage());
+       }catch (Exception e){
+           return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("INVALID INPUT");
        }
-
     }
 
 }
