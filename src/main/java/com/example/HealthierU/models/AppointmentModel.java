@@ -44,24 +44,12 @@ public class AppointmentModel {
         return service;
     }
 
-    public void setService(String service) {
-        this.service = service;
-    }
-
    public UUID getProfessionalModel() {
         return professionalId;
     }
 
-    public void setProfessionalModel(UUID professionalId) {
-        this.professionalId = professionalId;
-    }
-
     public LocalDateTime getappointmentDate() {
         return appointmentDate;
-    }
-
-    public void setappointmentDate(LocalDateTime appointmentDate) {
-        this.appointmentDate = appointmentDate;
     }
 
     @Override

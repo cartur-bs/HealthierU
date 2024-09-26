@@ -27,28 +27,18 @@ public class ProfessionalModel {
         this.professionalField = professinalDTO.professionalField();
     }
 
+    public UUID getProfessionalId() { return professionalId; }
+
     public String getProfessionalName() {
         return professionalName;
-    }
-
-    public void setProfessionalName(String professionalName) {
-        this.professionalName = professionalName;
     }
 
     public int getProfessionalRegister() {
         return professionalRegister;
     }
 
-    public void setProfessionalRegister(int professionalRegister) {
-        this.professionalRegister = professionalRegister;
-    }
-
     public String getProfessionalField() {
         return professionalField;
-    }
-
-    public void setProfessionalField(String professionalField) {
-        this.professionalField = professionalField;
     }
 
     @Override

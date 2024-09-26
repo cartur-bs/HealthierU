@@ -38,40 +38,20 @@ public class PatientModel {
         return patientName;
     }
 
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
-    }
-
     public int getPatientAge() {
         return patientAge;
-    }
-
-    public void setPatientAge(int patientAge) {
-        this.patientAge = patientAge;
     }
 
     public LocalDate getPatientBirthDate() {
         return patientBirthDate;
     }
 
-    public void setPatientBirthDate(LocalDate patientBirthDate) {
-        this.patientBirthDate = patientBirthDate;
-    }
-
     public String getPatientAddress() {
         return patientAddress;
     }
 
-    public void setPatientAddress(String patientAddress) {
-        this.patientAddress = patientAddress;
-    }
-
     public String getPatientPhoneNumber() {
         return patientPhoneNumber;
-    }
-
-    public void setPatientPhoneNumber(String patientPhoneNumber) {
-        this.patientPhoneNumber = patientPhoneNumber;
     }
 
     @Override
