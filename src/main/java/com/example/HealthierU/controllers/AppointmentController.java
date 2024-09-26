@@ -31,10 +31,18 @@ public class AppointmentController extends SQLException{
         }
     }
     @PostMapping("/post")
-    public ResponseEntity<?> newAppointment(@RequestBody @Valid AppointmentDTO appointmentDTO){
-        AppointmentModel appointmentModel = new AppointmentModel(appointmentDTO);
-        appointmentRepository.save(appointmentModel);
-        System.out.println(appointmentModel);
-        return ResponseEntity.ok("NEW APPOINTMENT CREATED");
+    public ResponseEntity<?> newAppointment(@RequestBody @Valid AppointmentDTO appointmentDTO) throws SQLException{
+        try{
+            AppointmentModel appointmentModel = new AppointmentModel(appointmentDTO);
+            if(appointmentModel.toString().isEmpty()){
+                throw new SQLException();
+            }
+            appointmentRepository.save(appointmentModel);
+            return ResponseEntity.ok("NEW APPOINTMENT CREATED");
+        }catch (SQLException e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("ERROR TRYING TO SAVE NEW APPOINTMENT"+e.getMessage());
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("INVALID INPUT");
+        }
     }
 }
