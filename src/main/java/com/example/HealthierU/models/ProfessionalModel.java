@@ -8,7 +8,7 @@ import java.util.UUID;
 @Table(name="Professional")
 public class ProfessionalModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     @Column(name="professionalid")
     private UUID professionalId;
     @Column(name="professionalname")

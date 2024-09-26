@@ -8,11 +8,10 @@ import java.util.UUID;
 
 @Entity
 @Table(name="Patient")
-//@EqualsAndHashCode()
 public class PatientModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue
+    private UUID patientId;
     @Column(name = "patientname")
     private String patientName;
     @Column(name = "patientage")
@@ -78,7 +77,7 @@ public class PatientModel {
     @Override
     public String toString() {
         return "PatientModel{" +
-                "id=" + id +
+                "patientId=" + patientId +
                 ", patientName='" + patientName + '\'' +
                 ", patientAge=" + patientAge +
                 ", patientBirthDate=" + patientBirthDate +
