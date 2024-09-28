@@ -1,9 +1,7 @@
 package com.example.HealthierU.models;
 
 import com.example.HealthierU.DTOs.AppointmentDTO;
-import com.example.HealthierU.controllers.PatientController;
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -16,13 +14,6 @@ public class AppointmentModel {
     @Column(name = "appointmentid")
     private UUID appointmentId;
     private String service;
-    /*@JoinColumn(name = "professional_id", referencedColumnName = "professionalid")
-    @Column(name = "professionalmodel")
-    private ProfessionalModel professionalModel;
-
-    @JoinColumn(name = "professional_id", referencedColumnName = "professionalid")
-    @Column(name = "patientmodel")
-    private PatientModel patientModel;*/
     @Column(name = "professionalid")
     private UUID professionalId;
     @Column(name = "patientid")
@@ -44,11 +35,15 @@ public class AppointmentModel {
         return service;
     }
 
-   public UUID getProfessionalModel() {
+    public UUID getProfessionalId() {
         return professionalId;
     }
 
-    public LocalDateTime getappointmentDate() {
+    public UUID getPatientId() {
+        return patientId;
+    }
+
+    public LocalDateTime getAppointmentDate() {
         return appointmentDate;
     }
 
@@ -56,7 +51,8 @@ public class AppointmentModel {
     public String toString() {
         return "AppointmentModel{" +
                 "service='" + service + '\'' +
-               // ", professionalModel=" + professionalModel +
+                ", professionalId=" + professionalId +
+                ", patientId=" + patientId +
                 ", appointmentDate=" + appointmentDate +
                 '}';
     }

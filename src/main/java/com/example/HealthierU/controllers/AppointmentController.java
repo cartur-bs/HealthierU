@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/appointment")
@@ -37,12 +38,18 @@ public class AppointmentController extends SQLException{
             if(appointmentModel.toString().isEmpty()){
                 throw new SQLException();
             }
+            List<AppointmentModel> existingAppointments = appointmentRepository.findByProfessionalId(appointmentDTO.professionalId());
+            for(AppointmentModel existingAppointment: existingAppointments){
+                if(existingAppointment.getAppointmentDate().equals(appointmentDTO.appointmentDate())){
+                    return ResponseEntity.status(HttpStatus.CONFLICT).body("THIS DATE IS NOT AVAILABLE FOR THIS PROFESSIONAL, LET'S TRY AGAIN");
+                }
+            }
             appointmentRepository.save(appointmentModel);
             return ResponseEntity.ok("NEW APPOINTMENT CREATED");
         }catch (SQLException e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("ERROR TRYING TO SAVE NEW APPOINTMENT"+e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("ERROR TRYING TO SAVE NEW APPOINTMENT: "+e.getMessage());
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("INVALID INPUT");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("INVALID INPUT: "+e.getMessage());
         }
     }
 }
