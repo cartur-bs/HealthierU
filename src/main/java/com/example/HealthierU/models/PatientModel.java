@@ -11,6 +11,7 @@ import java.util.UUID;
 public class PatientModel {
     @Id
     @GeneratedValue
+    @Column(name = "patientid")
     private UUID patientId;
     @Column(name = "patientname")
     private String patientName;

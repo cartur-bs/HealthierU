@@ -2,7 +2,9 @@ package com.example.HealthierU.controllers;
 
 import com.example.HealthierU.DTOs.AppointmentDTO;
 import com.example.HealthierU.models.AppointmentModel;
+import com.example.HealthierU.models.PatientModel;
 import com.example.HealthierU.repositories.AppointmentRepository;
+import com.example.HealthierU.repositories.PatientRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,12 +13,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/appointment")
 public class AppointmentController extends SQLException{
     @Autowired
     AppointmentRepository appointmentRepository;
+
+    @Autowired
+    PatientRepository patientRepository;
 
     @GetMapping("get-all")
     public ResponseEntity<?> getAllAppointments() throws SQLException{
@@ -31,6 +38,7 @@ public class AppointmentController extends SQLException{
                     .body("Error trying to retrieve patients from DB: " + e.getMessage());
         }
     }
+
     @PostMapping("/post")
     public ResponseEntity<?> newAppointment(@RequestBody @Valid AppointmentDTO appointmentDTO) throws SQLException{
         try{

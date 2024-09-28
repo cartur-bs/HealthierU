@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/patient")
@@ -28,6 +30,14 @@ public class PatientController extends SQLException{
            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                    .body("Error trying to retrieve patients from DB: " + e.getMessage());
        }
+    }
+    @GetMapping("/get/{id}")
+    public ResponseEntity getPatientById(@PathVariable UUID id){
+        Optional<PatientModel> patient = Optional.ofNullable(patientRepository.findByPatientId(id));
+        if(patient.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("PATIENT NOT FOUND");
+        }
+        return ResponseEntity.ok(patient);
     }
 
     @PostMapping("post-patient")
