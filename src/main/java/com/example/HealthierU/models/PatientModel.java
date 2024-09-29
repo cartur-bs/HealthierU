@@ -15,6 +15,8 @@ public class PatientModel {
     private UUID patientId;
     @Column(name = "patientname")
     private String patientName;
+    @Column(name = "cpf")
+    private String CPF;
     @Column(name = "patientage")
     private int patientAge;
     @Column(name = "patientbirthdate")
@@ -29,6 +31,7 @@ public class PatientModel {
 
     public PatientModel(PatientDTO patientDTO) {
         this.patientName = patientDTO.patientName();
+        this.CPF = patientDTO.cpf();
         this.patientAge = patientDTO.patientAge();
         this.patientBirthDate = patientDTO.patientBirthDate();
         this.patientAddress = patientDTO.patientAddress();
@@ -53,6 +56,10 @@ public class PatientModel {
 
     public String getPatientPhoneNumber() {
         return patientPhoneNumber;
+    }
+
+    public String getCPF() {
+        return CPF;
     }
 
     @Override

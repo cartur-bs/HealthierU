@@ -18,7 +18,7 @@ import java.util.UUID;
 public class PatientController extends SQLException{
     @Autowired
     private PatientRepository patientRepository;
-    @GetMapping("get-all-patients")
+    @GetMapping("get-all")
     public ResponseEntity getAllPatients() throws SQLException {
        try{
            var allPatients = patientRepository.findAll();
@@ -48,7 +48,7 @@ public class PatientController extends SQLException{
             if(patientModel.toString().isEmpty()){
                 throw new SQLException();
             }
-            return ResponseEntity.ok().build();
+            return ResponseEntity.status(HttpStatus.CREATED).body("NEW PATIENT CREATED");
         }catch(SQLException e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error trying to save patient: " + e.getMessage());
